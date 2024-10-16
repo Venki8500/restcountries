@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <style>
+            #d1 li:hover {
+            transform: scale(1.05);
+            box-shadow: 5px 5px 10px grey;
+            }
+            
+            
+        </style>
+       
+    </head>
+    <body>
+        <ul id="d1" style="display: flex;flex-wrap: wrap;"
+        ></ul>
+        <script>
+            fetch("https://restcountries.com/v3/all").then(function(res){
+                res.json().then(function(data){
+                    console.log(data)
+                    data.forEach(function(x){
+                        var nli=document.createElement("li")
+                        nli.style.listStyle="none"
+                       nli.style.borderRadius="2%" 
+                        nli.style.boxShadow="3px 3px 3px 3px grey"
+                        nli.style.width="250px"
+                        nli.style.height="240px"
+                        nli.style.textAlign="center"
+                        nli.style.padding="20px"
+                        nli.style.marginTop="20px"
+                        nli.style.marginLeft="20px"
+                        
+
+                        var nimg=document.createElement("img")
+                        nimg.src=x.flags[0];
+                        nimg.style.width="150px";
+                        nimg.style.height="100px"
+                        nimg.style.boxShadow="2px 2px 2px 2px grey"
+                        nli.appendChild(nimg)
+
+                        
+                        var nam=document.createElement("h3")
+                        nam.innerHTML=x.name.common
+                        nam.style.fontFamily="verdana"
+                        nli.appendChild(nam)
+
+                        var nam1=document.createElement("h3")
+                        nam1.innerHTML=x.population
+                        nam1.style.fontFamily="verdana"
+                        nli.appendChild(nam1)
+
+                        var nam2=document.createElement("h3")
+                        nam2.innerHTML=x.timezones.slice(0,15)
+                        nam2.style.fontFamily="cursive"
+                        nli.appendChild(nam2)
+
+                        document.getElementById("d1").appendChild(nli)
+                    })
+            })
+        })
+        </script>
+    </body>
+</html>
